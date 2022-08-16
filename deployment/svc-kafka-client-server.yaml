@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-client-server
+  labels:
+    app: kafka-client-server
+spec:
+  type: NodePort
+  ports:
+  - port: 8083
+    targetPort: 8083
+  selector:
+    app: kafka-client-server
