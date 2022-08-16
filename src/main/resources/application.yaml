@@ -1,0 +1,56 @@
+server:
+  port: ${KAFKA_SERVER_PORT:8083}
+  servlet:
+    context-path: ${KAFKA_SERVER_SERVLET_CONTEXT_PATH:/kafka-server}
+
+spring:
+  application:
+    name: kafka-server
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://matching.169.56.100.104.nip.io:30503/matching}?useUnicode=true&characterEncoding=utf-8
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:passw0rd}
+    hikari:
+      connection-timeout: 5000
+      validation-timeout: 1000
+      maximum-pool-size: 30
+      minimum-idle: 2
+      connection-test-query: SELECT 1
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  # Kafka
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:169.56.100.104}:${KAFKA_BROKER_PORT:30011}
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+    producer:
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: ${CONSUMER_GROUP:chatting}
+      auto-offset-reset: latest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#MyBatis
+mybatis:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30 
+  type-aliases-package: com.matching.kb40.chatting.kafkaserver.model, com.matching.kb40.chatting.kafkaserver.dto
+
+#Parameter
+param:
+  kafka:
+    topic:
+        total:
+          insert: chat_insert
+          update: chat_update

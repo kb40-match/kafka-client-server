@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chatting">
+
+    <insert id="insertChat" parameterType="ChatDto">
+        INSERT INTO tb_chat
+        (
+            match_id, 
+            user_id, 
+            content, 
+            read_flag, 
+            created_date
+        )
+        VALUES
+        (
+            #{matchId},
+            #{userId},
+            #{content},
+            #{readFlag},
+            #{createdDate}
+        )
+    </insert>
+
+    <update id="updateChat" parameterType="ReadChat">
+        UPDATE tb_chat
+	        SET read_flag = 'Y'
+        WHERE 
+	        match_id = #{matchId}
+	        AND user_id != #{userId}
+    </update>
+
+    <select id="findPrevChatList" resultType="PrevChatRes" parameterType="PrevChatReq">
+        SELECT
+            user_id, content, read_flag, created_date
+        FROM
+            tb_chat
+        WHERE
+            match_id = #{matchId}
+        ORDER BY
+            created_date DESC
+        LIMIT
+            #{startRow}, #{rowNum}
+    </select>
+
+</mapper>  
