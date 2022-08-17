@@ -6,6 +6,7 @@ import java.util.List;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.matching.kb40.chatting.kafkaserver.service.ChattingService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@CrossOrigin(origins = "http://matching.kbfg.kubepia.com")
 @RestController
 @RequestMapping("/chatting")
 public class ChattingController {
