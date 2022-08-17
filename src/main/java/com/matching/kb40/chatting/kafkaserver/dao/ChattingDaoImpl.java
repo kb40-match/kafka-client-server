@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.matching.kb40.chatting.kafkaserver.dto.ChatDto;
+import com.matching.kb40.chatting.kafkaserver.model.NewChatFlagReq;
 import com.matching.kb40.chatting.kafkaserver.model.PrevChatReq;
 import com.matching.kb40.chatting.kafkaserver.model.PrevChatRes;
 import com.matching.kb40.chatting.kafkaserver.model.ReadChat;
@@ -32,5 +33,10 @@ public class ChattingDaoImpl implements ChattingDao {
 	@Override
 	public List<PrevChatRes> findPrevChat(PrevChatReq prevChatReq) throws SQLException{ 
 		return SqlSessionTemplate.selectList(nameSpace.concat("findPrevChatList"),prevChatReq);
+	}
+
+	@Override
+	public String findNewChat(NewChatFlagReq newChatFlagReq) throws SQLException{
+		return SqlSessionTemplate.selectOne(nameSpace.concat("findNewChatYN"),newChatFlagReq);
 	}
 }
