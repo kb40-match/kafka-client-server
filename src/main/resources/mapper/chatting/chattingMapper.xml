@@ -43,4 +43,13 @@
             #{startRow}, #{rowNum}
     </select>
 
+    <select id="findNewChatYN" resultType="String" parameterType="NewChatFlagReq">
+    SELECT
+        IF(COUNT(1) != 0, 'Y', 'N')
+    FROM
+        tb_chat
+    WHERE
+        match_id = #{matchId}
+        and user_id != #{userId};
+    </select>
 </mapper>  
