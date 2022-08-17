@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.matching.kb40.chatting.kafkaserver.dao.ChattingDao;
 import com.matching.kb40.chatting.kafkaserver.dto.ChatDto;
 import com.matching.kb40.chatting.kafkaserver.model.NewChat;
+import com.matching.kb40.chatting.kafkaserver.model.NewChatFlagReq;
 import com.matching.kb40.chatting.kafkaserver.model.PrevChatReq;
 import com.matching.kb40.chatting.kafkaserver.model.PrevChatRes;
 import com.matching.kb40.chatting.kafkaserver.model.ReadChat;
@@ -77,5 +78,8 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public List<PrevChatRes> findPrevChat(PrevChatReq prevChatReq) throws Exception {
 		return chattingDao.findPrevChat(prevChatReq);
+	}
+	public String findNewChat(NewChatFlagReq newChatFlagReq) throws Exception{
+		return chattingDao.findNewChat(newChatFlagReq);
 	}
 }
