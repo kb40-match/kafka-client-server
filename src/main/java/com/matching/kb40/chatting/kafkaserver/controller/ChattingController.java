@@ -20,7 +20,7 @@ import com.matching.kb40.chatting.kafkaserver.service.ChattingService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@CrossOrigin(origins = "http://matching.kbfg.kubepia.com")
+@CrossOrigin
 @RestController
 @RequestMapping("/chatting")
 public class ChattingController {
