@@ -36,6 +36,7 @@ public class ChattingController {
         prevChatReq.setStartRow(Integer.parseInt(startRow));
         prevChatReq.setRowNum(Integer.parseInt(rowNum));
         List<PrevChatRes> prevChatReslist = new ArrayList<PrevChatRes>();
+        prevChatReslist = chattingService.findPrevChat(prevChatReq);
         log.debug("Reponse: " + prevChatReslist.toString());
 		return prevChatReslist;
 	}
