@@ -79,7 +79,14 @@ public class ChattingServiceImpl implements ChattingService{
 	public List<PrevChatRes> findPrevChat(PrevChatReq prevChatReq) throws Exception {
 		return chattingDao.findPrevChat(prevChatReq);
 	}
+
+	@Override
 	public String findNewChat(NewChatFlagReq newChatFlagReq) throws Exception{
 		return chattingDao.findNewChat(newChatFlagReq);
+	}
+
+	@Override
+	public List<String> findChattingUser(String matchId) throws Exception{
+		return chattingDao.findChattingUser(matchId);
 	}
 }

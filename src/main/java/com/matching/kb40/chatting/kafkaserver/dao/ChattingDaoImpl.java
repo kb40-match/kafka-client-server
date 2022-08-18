@@ -39,4 +39,9 @@ public class ChattingDaoImpl implements ChattingDao {
 	public String findNewChat(NewChatFlagReq newChatFlagReq) throws SQLException{
 		return SqlSessionTemplate.selectOne(nameSpace.concat("findNewChatYN"),newChatFlagReq);
 	}
+
+	@Override
+	public List<String> findChattingUser(String matchId) throws SQLException{
+		return SqlSessionTemplate.selectList(nameSpace.concat("findChattingUserList"),matchId);
+	}
 }

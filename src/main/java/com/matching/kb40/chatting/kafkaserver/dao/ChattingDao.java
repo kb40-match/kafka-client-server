@@ -18,5 +18,8 @@ public interface ChattingDao {
 	public List<PrevChatRes> findPrevChat(PrevChatReq prevChatReq) throws SQLException;
 
     public String findNewChat(NewChatFlagReq newChatFlagReq) throws SQLException;
+
+    public List<String> findChattingUser(String matchId) throws SQLException;
+    
     
 }

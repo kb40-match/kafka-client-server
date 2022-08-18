@@ -18,4 +18,6 @@ public interface ChattingService {
 
     public String findNewChat(NewChatFlagReq newChatFlagReq) throws Exception;
 
+    public List<String> findChattingUser(String matchId) throws Exception;
+
 }
