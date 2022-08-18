@@ -52,4 +52,23 @@
         match_id = #{matchId}
         and user_id != #{userId};
     </select>
+
+
+    <select id="findChattingUserList" resultType="String" parameterType="String">
+    SELECT
+            sender as user_id
+        FROM
+            tb_match
+        WHERE
+            match_id = #{userId}
+            AND active_flag = '1'
+        UNION
+        SELECT
+            receiver as user_id
+        FROM
+            tb_match
+        WHERE
+            match_id = #{userId}
+            AND active_flag = '1'
+    </select>
 </mapper>  
