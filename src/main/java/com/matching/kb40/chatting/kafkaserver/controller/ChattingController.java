@@ -51,4 +51,12 @@ public class ChattingController {
 		return newChatYN;
 	}
 
+    @GetMapping("/{matchId}")
+	public List<String> findChattingUser(@PathVariable String matchId) throws Exception {
+        log.debug("Request: matchId=" + matchId);
+        List<String> users = chattingService.findChattingUser(matchId);
+        log.debug("Reponse: " + users.toString());
+		return users;
+	}
+
 }
